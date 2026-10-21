@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>方塊對決 | Neon Block Duel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">NEON ARENA 01</p>
+          <h1>方塊對決</h1>
+        </div>
+      </div>
+      <div class="match-status" aria-live="polite">
+        <span class="status-dot"></span>
+        <span id="statusText">等待對戰</span>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="對戰資訊">
+      <div class="fighter-card player-card">
+        <div class="fighter-heading">
+          <span class="fighter-swatch player-swatch"></span>
+          <div><span class="role-label">PLAYER</span><strong>藍方</strong></div>
+        </div>
+        <div class="charge-track" aria-label="玩家蓄力進度"><span id="playerCharge"></span></div>
+        <span class="charge-label" id="playerChargeLabel">待機</span>
+      </div>
+      <div class="round-readout">
+        <span class="round-label">ROUND</span>
+        <strong id="roundState">READY</strong>
+        <span class="totem-progress" id="totemProgress">圖騰還需 10 顆砲彈</span>
+      </div>
+      <div class="fighter-card ai-card">
+        <div class="fighter-heading">
+          <span class="fighter-swatch ai-swatch"></span>
+          <div><span class="role-label">AI OPPONENT</span><strong>粉方</strong></div>
+        </div>
+        <div class="charge-track" aria-label="AI蓄力進度"><span id="aiCharge"></span></div>
+        <span class="charge-label" id="aiChargeLabel">待機</span>
+      </div>
+    </section>
+
+    <section class="arena-frame">
+      <canvas id="gameCanvas" aria-label="方塊對決遊戲畫面"></canvas>
+      <div class="countdown-overlay" id="countdownOverlay">
+        <span class="countdown-kicker">GET READY</span>
+        <strong id="countdownNumber">3</strong>
+        <span class="countdown-copy">先活下來，再找到出手機會</span>
+      </div>
+      <div class="result-overlay hidden" id="resultOverlay">
+        <span class="countdown-kicker">MATCH COMPLETE</span>
+        <strong id="resultTitle">PLAYER WINS</strong>
+        <span class="restart-prompt" id="restartPrompt">按空白鍵再來一場</span>
+      </div>
+      <div class="touch-controls" aria-label="手機操作">
+        <div class="joystick" id="joystick" aria-label="移動搖桿">
+          <span class="joystick-knob" id="joystickKnob"></span>
+        </div>
+        <div class="touch-actions">
+          <button class="touch-action bullet-action" id="bulletButton" type="button" aria-label="發射砲彈">砲彈</button>
+          <button class="touch-action laser-action" id="laserButton" type="button" aria-label="蓄力激光砲">激光</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="control-deck">
+      <div class="control-group">
+        <span class="control-title">移動</span>
+        <div class="key-row">
+          <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+        </div>
+      </div>
+      <div class="control-divider"></div>
+      <div class="control-group control-group-wide">
+        <span class="control-title">武器系統</span>
+        <div class="weapon-list">
+          <span><kbd>J</kbd> 連射砲彈</span>
+          <span><kbd>K</kbd> 長按蓄力，放開發射激光</span>
+        </div>
+      </div>
+      <p class="tip">激光會鎖定對手目前位置<br /><b>蓄力 1 秒</b>後威力全開</p>
+    </footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
